@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://kit.fontawesome.com/60e1a8883b.js" crossorigin="anonymous"></script>   
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <main>
+        <a href="index.html">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <div class="loginbox">
+            <div class="loginboxlvl2">
+                <form id="loginForm">
+                    <div class="input">
+                        <label for="name">First and Last name</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+                    <div class="input">
+                        <label for="password">Passcode</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <div class="input">
+                        <input type="submit" value="Submit">
+                    </div>
+                    <div class="error input">
+                        <!-- Error messages will be displayed here -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const password = formData.get('password');
+            const correctPassword = 'dasfq1f42rg3rrwg324@#@FFQ!';
+
+            if (!name) {
+                document.querySelector('.error').innerHTML = '<h4 class="foutmelding">Please enter your name</h4>';
+                return;
+            }
+
+            if (!password) {
+                document.querySelector('.error').innerHTML = '<h4 class="foutmelding">Please enter a password</h4>';
+                return;
+            }
+
+            if (password === correctPassword) {
+                sessionStorage.setItem('name', name);
+                window.location.href = 'projects.html';
+            } else {
+                document.querySelector('.error').innerHTML = '<h4 class="foutmelding">Incorrect password</h4>';
+            }
+
+            // Log the login attempt
+            fetch('content/loginattempts.txt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `name=${encodeURIComponent(name)}`
+            });
+        });
+    </script>
+</body>
+</html>

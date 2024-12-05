@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/60e1a8883b.js" crossorigin="anonymous"></script>   
+    <link rel="stylesheet" href="css/projects.css">
+</head>
+<body>
+    <aside>
+      <div class="inner">
+        <h3>PDF List</h3>
+        <div id="pdf-list"></div>
+      </div>
+    </aside>
+    
+    <main>
+      <div class="top">
+        <a href="pdf/CafeOUI.pdf" target="_blank">moi</a> !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        <h2 id='pdftitle'>Assignments</h2>
+        <div class="dropdown">
+          <i class="fa-solid fa-bars"></i>
+          <div class="dropdown-content">
+              <a href="index.html">Portfolio</a>
+              <a href="projects.html">Projects</a>
+              <a href="https://github.com/LukeBoscher">Github</a>
+          </div>
+        </div>
+      </div>
+      <div class="pdfviewer">
+          <embed id="pdf-embed" type="application/pdf" src="">
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Check session
+        if (!sessionStorage.getItem('name')) {
+          window.location.href = 'login.html';
+          return;
+        }
+
+        const pdfs = {
+          'Notulen': 'notulen.pdf',
+          'Groep Presentatie': 'GroepspresentatieINF1B.pdf',
+          'titel3': 'CafeOUI.pdf',
+          'titel4': 'CafeOUI.pdf',
+          'titel5': 'CafeOUI.pdf',
+          'titel6': 'CafeOUI.pdf',
+          'titel7': 'CafeOUI.pdf',
+          'titel8': 'CafeOUI.pdf'
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedPdf = urlParams.get('pdf');
+        const currentPdf = pdfs[selectedPdf] || 'notulen.pdf';
+
+        // Populate PDF list
+        const pdfList = document.getElementById('pdf-list');
+        for (const [title, file] of Object.entries(pdfs)) {
+          const link = document.createElement('a');
+          link.href = `?pdf=${encodeURIComponent(title)}`;
+          link.className = (currentPdf === file) ? 'selected' : '';
+          link.textContent = title;
+          link.addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('pdf-embed').src = `pdf/${file}`;
+            document.querySelectorAll('#pdf-list a').forEach(a => a.classList.remove('selected'));
+            link.classList.add('selected');
+          });
+          pdfList.appendChild(link);
+        }
+
+        // Set initial PDF embed source
+        document.getElementById('pdf-embed').src = `pdf/${currentPdf}`;
+      });
+
+      window.addEventListener('beforeunload', function(event) {
+        if (!event.target.activeElement || !event.target.activeElement.href) {
+          sessionStorage.removeItem('name');
+        }
+      });
+    </script>
+</body>
+</html>
+
