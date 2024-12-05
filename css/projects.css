@@ -1,0 +1,201 @@
+:root{
+    --background: #FFF3F0;
+    --geel: #ECA72C;
+    --grijs:  #4D5061;
+    --grijzer: #3F414F;
+    --grijste: #30323D;
+    --text: #e4e4e4;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    cursor: url(../cursor/tea.png), auto;
+
+}
+
+body {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    font-size: calc(10px + 0.5vw); /* Responsive font size */
+}
+
+
+
+main {
+    background-color: var(--geel);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 90vw; /* Adjusted to account for aside width */
+    margin-left: 10vw; /* Adjusted to account for aside width */
+    color: black;
+    font-family: 'montserrat';
+    color: var(--text);
+}
+
+
+/* Style The Dropdown Button */
+.fa-bars {
+    color: white;
+    padding: 16px;
+    font-size: 3rem;
+    border: none;
+    cursor: pointer;
+}
+
+.fa-bars:hover {
+    color: var(--grijs);
+}
+
+
+.dropdown {
+position: absolute;
+position: fixed;
+top: 0;
+right: 0;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: var(--text);
+min-width: 160px;
+right: 3px;
+border-radius: 5px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: var(--grijste);
+    color: var(--text);
+    border-radius: 5px;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+display: block;
+}
+
+
+.pdf-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%; 
+}
+.pdfkeuze {
+    display: flex;
+    justify-content: center;
+    align-items: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 20px 0;
+}
+.pdfkeuze select {
+    min-width:50%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: var(--primary-color);
+    color: var(--raisin-black);
+    font-size: 2.5rem;
+    text-align: center;
+}
+.pdfkeuze select:hover {
+    cursor: pointer;
+}
+
+.pdf {
+    width: 30%;
+    margin: 10px;
+}
+
+.pdfviewer {
+    width: 90%;
+    height: 90vh; /* Adjusted to fit within the viewport */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+}
+
+.pdfviewer h2 {
+    padding: 50px;
+    font-size: 3rem;
+}
+
+.pdfviewer embed {
+    width: 100%;
+    height: 100%;
+}
+
+aside {
+    width: 10vw;
+    height: 100vh;
+    background-color: var(--grijste); /* grey background */
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    color: var(--text);
+}
+
+aside > * {
+    z-index: 10;
+}
+
+h3 {
+    font-size: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    }
+.inner {
+    width: 90%;
+    height: 95%;
+    background-color: var(--grijzer);
+    text-align: center;
+}
+
+aside a{
+    color: var(--text);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 1.5rem;
+}
+
+aside a:hover, .selected{
+    background-color: var(--text);
+    color: var(--grijste);
+}
+
+.top {
+    width: 90vw;
+    height: 7vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    top: 0;
+    color: var(--text);
+    /* background-color: var(--grijste); */
+}
